@@ -25,7 +25,7 @@ export const RestaurantCard = ({restaurant}: { restaurant: any }) => {
                     <View className="flex-row items-center gap-x-1">
                         <Image source={require('../assets/images/fullstar.png')} className="h-4 w-4"/>
                         <Text className="text-xs">
-                            <Text className="text-green-700">{restaurant.stars}</Text>
+                            <Text className="text-green-700">{restaurant.rating}</Text>
                             <Text className="text-gray-700">({restaurant.reviews} reviews) ·
                                 <Text className="font-semibold">{restaurant?.type?.name}</Text>
                             </Text>

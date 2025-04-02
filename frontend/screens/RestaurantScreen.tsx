@@ -13,11 +13,11 @@ import {urlFor} from "@/sanity";
 export default function RestaurantScreen() {
     const {params} = useRoute();
     const navigation = useNavigation();
-    let restaurant = params;
+    let restaurant: any = params;
     const dispatch = useDispatch();
     useEffect(() => {
         if(restaurant && restaurant._id){
-            dispatch(setRestaurant({...restaurant}))
+            dispatch(setRestaurant({...restaurant} ))
         }
     },[])
 
@@ -44,8 +44,8 @@ export default function RestaurantScreen() {
                             <View className="flex-row items-center gap-x-1">
                                 <Image source={require('../assets/images/fullstar.png')} className="h-4 w-4"/>
                                 <Text className="text-xs">
-                                    <Text className="text=green-700">{restaurant!.stars}</Text>
-                                    <Text className="text-gray-700">({restaurant!.reviews} reviews) ·
+                                    <Text className="text=green-700">{restaurant!.rating}</Text>
+                                    <Text className="text-gray-700">({restaurant!.reviews} reviews) · &nbsp;
                                         {
                                         <Text className="font-semibold">{restaurant!.type?.name}</Text>
                                         }
