@@ -9,17 +9,19 @@ import {StatusBar} from "expo-status-bar";
 import {useDispatch} from "react-redux";
 import {setRestaurant} from "@/slices/restaurantSlice";
 import {urlFor} from "@/sanity";
+import {Restaurant} from "@/interfaces/restaurant";
+
 
 export default function RestaurantScreen() {
     const {params} = useRoute();
     const navigation = useNavigation();
-    let restaurant: any = params;
+    let restaurant: Restaurant = params as Restaurant;
     const dispatch = useDispatch();
     useEffect(() => {
         if(restaurant && restaurant._id){
             dispatch(setRestaurant({...restaurant} ))
         }
-    },[])
+    },[restaurant, dispatch])
 
     return (
         <View>
