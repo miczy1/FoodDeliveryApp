@@ -92,7 +92,7 @@ export default function CartScreen() {
             <View style={{backgroundColor: themeColors.bgColor(0.2)}} className="p-6 px-8 rounded-t-3xl gap-y-4">
                 <View className="flex-row justify-between">
                     <Text className="text-gray-700">Subtotal</Text>
-                    <Text className="text-gray-700">${cartTotal}</Text>
+                    <Text className="text-gray-700">${cartTotal.toFixed(2)}</Text>
                 </View>
                 <View className="flex-row justify-between">
                     <Text className="text-gray-700">Delivery Fee</Text>

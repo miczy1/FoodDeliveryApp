@@ -4,9 +4,10 @@ import * as Icon from "react-native-feather";
 import {themeColors} from "@/theme";
 import {useNavigation} from "@react-navigation/native";
 import {urlFor} from "@/sanity";
+import {Restaurant} from "@/interfaces/restaurant";
 
 
-export const RestaurantCard = ({restaurant}: { restaurant: any }) => {
+export const RestaurantCard = ({restaurant}: { restaurant: Restaurant }) => {
     const navigation = useNavigation()
     return (
         <TouchableWithoutFeedback

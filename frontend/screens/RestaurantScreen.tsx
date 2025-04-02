@@ -1,5 +1,5 @@
 import {View, Text, ScrollView, Image, TouchableOpacity} from "react-native";
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import * as Icon from "react-native-feather";
 import {themeColors} from "@/theme";
@@ -19,10 +19,10 @@ export default function RestaurantScreen() {
     let restaurant: Restaurant = params as Restaurant;
     const dispatch = useDispatch();
     useEffect(() => {
-        if(restaurant && restaurant._id){
-            dispatch(setRestaurant({...restaurant} ))
+        if (restaurant && restaurant._id) {
+            dispatch(setRestaurant({...restaurant}))
         }
-    },[restaurant, dispatch])
+    }, [restaurant, dispatch])
 
     return (
         <View>
@@ -50,7 +50,7 @@ export default function RestaurantScreen() {
                                     <Text className="text=green-700">{restaurant.rating}</Text>
                                     <Text className="text-gray-700">({restaurant.reviews} reviews) · &nbsp;
                                         {
-                                        <Text className="font-semibold">{restaurant.type?.name}</Text>
+                                            <Text className="font-semibold">{restaurant.type?.name}</Text>
                                         }
                                     </Text>
                                 </Text>
@@ -64,14 +64,16 @@ export default function RestaurantScreen() {
                     </View>
                 </View>
             </ScrollView>
-            <View className="pb-36 bg-white -mb-10">
-                <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
-                {/*DISHES*/}
-                {
-                    restaurant.dishes.map((dish: Dish, index: number) => <DishRow
-                    dish={{...dish}} key={index}/>)
-                }
-            </View>
+            <ScrollView className="h-2/3">
+                <View className="pb-36 bg-white -mb-10">
+                    <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
+                    {/*DISHES*/}
+                    {
+                        restaurant.dishes.map((dish: Dish, index: number) => <DishRow
+                            dish={{...dish}} key={index}/>)
+                    }
+                </View>
+            </ScrollView>
         </View>
     );
 }
