@@ -5,17 +5,19 @@ import * as Icon from "react-native-feather";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart, selectCartItemsById} from "@/slices/cartSlice";
 import { urlFor } from "@/sanity";
+import {Dish} from "@/interfaces/dish";
+import {RootState} from "@/store";
 
-export default function DishRow({dish}: { dish: any }) {
+export default function DishRow({dish}: { dish: Dish }) {
 
     const dispatch = useDispatch();
-    const totalItems = useSelector(state => selectCartItemsById(state, dish._id))
+    const totalItems = useSelector((state: RootState)  => selectCartItemsById(state, dish._id))
     const handleIncrease = () => {
         dispatch(addToCart({...dish}))
     }
 
     const handleDecrease = () => {
-        dispatch(removeFromCart({id: dish._id}))
+        dispatch(removeFromCart(dish))
     }
     return (
         <View className="flex-row items-center bg-white p-3 rounded-3xl shadow-2xl mb-3 mx-2">

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from "react-native";
-import {featured} from "@/constants";
 import {themeColors} from "@/theme";
 import * as Icon from "react-native-feather";
 import {useNavigation} from "@react-navigation/native";
@@ -8,23 +7,25 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectRestaurant} from "@/slices/restaurantSlice";
 import {removeFromCart, selectCartItems, selectCartTotal} from "@/slices/cartSlice";
 import {urlFor} from "@/sanity";
+import {GroupedItems} from "@/interfaces/groupedItems";
+import {CartItem} from "@/interfaces/cartItem";
 
 
 export default function CartScreen() {
     const restaurant = useSelector(selectRestaurant)
     const navigation = useNavigation();
-    const cartItems = useSelector(selectCartItems);
+    const cartItems = useSelector(selectCartItems) as CartItem[];
     const cartTotal = useSelector(selectCartTotal);
-    const [groupedItems, setGroupedItems] = useState({});
+    const [groupedItems, setGroupedItems] = useState<GroupedItems>({});
     const dispatch = useDispatch();
     const deliveryFee = 2
 
     useEffect(() => {
-        const items = cartItems.reduce((group, item) => {
-            if(group[item.id]){
-                group[item.id].push(item)
+        const items = cartItems.reduce((group: GroupedItems, item: CartItem) => {
+            if(group[item._id]){
+                group[item._id].push(item)
             } else {
-                group[item.id] = [item]
+                group[item._id] = [item]
             }
             return group;
         }, {})
@@ -66,8 +67,8 @@ export default function CartScreen() {
             {/*DISHES*/}
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 50}} className="bg-white pt-5">
                 {
-                    Object.entries(groupedItems).map(([key, items]: [string, unknown]) => {
-                        let dish = items[0]
+                    Object.entries(groupedItems).map(([key, items]: [string, CartItem[]]) => {
+                        let dish = (items as CartItem[])[0];
                         return (
                             <View key={key} className="flex-row items-center gap-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-md">
                                 <Text className="font-bold" style={{color: themeColors.text}}>
@@ -78,7 +79,7 @@ export default function CartScreen() {
                                 <Text className="font-semibold text-base ">${dish.price}</Text>
                                 <TouchableOpacity
                                     className="p-1 rounded-full"
-                                    onPress={() => dispatch(removeFromCart({id: dish.id}))}
+                                    onPress={() => dispatch(removeFromCart(dish))}
                                     style={{backgroundColor: themeColors.bgColor(1)}}>
                                     <Icon.Minus stroke="white" strokeWidth={2} height={20} width={20}/>
                                 </TouchableOpacity>

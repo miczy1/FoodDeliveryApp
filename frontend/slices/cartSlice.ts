@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-interface CartItem {
-    id: number;
-    // Add other properties if needed
-}
+import {CartState} from "@/interfaces/cartState";
+import {CartItem} from "@/interfaces/cartItem";
 
 
-const initialState: any = {
+
+
+const initialState: CartState = {
     items: []
 }
 
@@ -19,7 +18,7 @@ export const cartSlice = createSlice({
         },
         removeFromCart: (state, action: PayloadAction<CartItem>) => {
            let newCart = [...state.items];
-           let itemIndex = state.items.findIndex((item: { _id: number; }) => item._id === action.payload.id);
+           let itemIndex = state.items.findIndex((item: { _id: number; }) => item._id === action.payload._id);
            if(itemIndex >= 0){
                 newCart.splice(itemIndex, 1)
            } else{
@@ -27,7 +26,7 @@ export const cartSlice = createSlice({
            }
            state.items = newCart;
         },
-        emptyCart: (state, action: PayloadAction<number>) => {
+        emptyCart: (state) => {
             state.items = [];
         }
     }
@@ -35,9 +34,9 @@ export const cartSlice = createSlice({
 
 export const { addToCart, removeFromCart, emptyCart } = cartSlice.actions
 
-export const selectCartItems = (state: { cart: { items: any } }) => state.cart.items;
+export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
 
-export const selectCartItemsById = (state: any, id: any) => state.cart.items.filter((item: { _id: any }) => item._id === id);
+export const selectCartItemsById = (state: { cart: CartState }, id: number) => state.cart.items.filter((item: { _id: any }) => item._id === id);
 
-export const selectCartTotal = (state: { cart: { items: any[]; }; }) => state.cart.items.reduce((total, item) => total = total + item.price, 0)
-export default cartSlice.reducer
+export const selectCartTotal = (state: { cart: CartState; }) => state.cart.items.reduce((total, item) => total = total + item.price, 0)
+// export default cartSlice.reducer

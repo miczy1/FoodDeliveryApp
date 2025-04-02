@@ -41,25 +41,25 @@ export default function RestaurantScreen() {
                     borderTopRightRadius: 40,
                 }} className="bg-white -mt-12 pt-6">
                     <View className="px-5">
-                        <Text className="text-3xl font-bold">{restaurant!.name}</Text>
+                        <Text className="text-3xl font-bold">{restaurant.name}</Text>
                         <View className="flex-row gap-x-2 my-1">
                             <View className="flex-row items-center gap-x-1">
                                 <Image source={require('../assets/images/fullstar.png')} className="h-4 w-4"/>
                                 <Text className="text-xs">
-                                    <Text className="text=green-700">{restaurant!.rating}</Text>
-                                    <Text className="text-gray-700">({restaurant!.reviews} reviews) · &nbsp;
+                                    <Text className="text=green-700">{restaurant.rating}</Text>
+                                    <Text className="text-gray-700">({restaurant.reviews} reviews) · &nbsp;
                                         {
-                                        <Text className="font-semibold">{restaurant!.type?.name}</Text>
+                                        <Text className="font-semibold">{restaurant.type?.name}</Text>
                                         }
                                     </Text>
                                 </Text>
                             </View>
                             <View className="flex-row items-center gap-x-1">
                                 <Icon.MapPin color="gray" width="15" height="15"/>
-                                <Text className="text-gray-700 text-xs">Nearby · {restaurant!.address}</Text>
+                                <Text className="text-gray-700 text-xs">Nearby · {restaurant.address}</Text>
                             </View>
                         </View>
-                        <Text className="text-gray-500 mt-2">{restaurant!.description}</Text>
+                        <Text className="text-gray-500 mt-2">{restaurant.description}</Text>
                     </View>
                 </View>
             </ScrollView>
