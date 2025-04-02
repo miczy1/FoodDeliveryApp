@@ -10,6 +10,7 @@ import {useDispatch} from "react-redux";
 import {setRestaurant} from "@/slices/restaurantSlice";
 import {urlFor} from "@/sanity";
 import {Restaurant} from "@/interfaces/restaurant";
+import {Dish} from "@/interfaces/dish";
 
 
 export default function RestaurantScreen() {
@@ -67,7 +68,7 @@ export default function RestaurantScreen() {
                 <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
                 {/*DISHES*/}
                 {
-                    restaurant!.dishes.map((dish: any, index: number) => <DishRow
+                    restaurant.dishes.map((dish: Dish, index: number) => <DishRow
                     dish={{...dish}} key={index}/>)
                 }
             </View>

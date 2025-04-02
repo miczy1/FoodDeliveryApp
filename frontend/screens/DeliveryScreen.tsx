@@ -15,6 +15,7 @@ export default function DeliveryScreen() {
     const dispatch = useDispatch();
 
     const cancelOrder = () => {
+        // @ts-ignore
         navigation.navigateDeprecated('Home');
         dispatch(emptyCart());
     }

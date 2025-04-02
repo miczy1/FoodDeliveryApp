@@ -1,6 +1,5 @@
 import {View, Text, TouchableOpacity} from "react-native";
 import React from "react";
-import * as Icon from "react-native-feather";
 import {themeColors} from "@/theme";
 import {useNavigation} from "@react-navigation/native";
 import {useSelector} from "react-redux";
@@ -11,10 +10,11 @@ export default function CartIcon() {
     const navigation = useNavigation();
     const cartItems = useSelector(selectCartItems)
     const cartTotal = useSelector(selectCartTotal);
-    if(!cartItems.length) return;
-    return(
+    if (!cartItems.length) return;
+    return (
         <View className="absolute bottom-5 w-full z-50">
             <TouchableOpacity
+                // @ts-ignore
                 onPress={() => navigation.navigate('Cart')}
                 className="flex-row justify-between items-center mx-5 rounded-full p-4 py-3 shadow-lg"
                 style={{backgroundColor: themeColors.bgColor((1))}}>

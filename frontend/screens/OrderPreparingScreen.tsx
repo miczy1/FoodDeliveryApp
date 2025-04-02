@@ -1,4 +1,4 @@
-import {View, Text, Image} from "react-native";
+import {View, Image} from "react-native";
 import React, {useEffect} from "react";
 import {NavigationProp, useNavigation} from "@react-navigation/native";
 import {RootStackParamList} from "@/interfaces/navigation";
@@ -6,6 +6,7 @@ export default function OrderPreparingScreen() {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
     useEffect(() => {
         setTimeout(() => {
+            // @ts-ignore
             navigation.navigate("Delivery");
         }, 3000);
     }, [navigation])
