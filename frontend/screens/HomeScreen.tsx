@@ -7,6 +7,7 @@ import {themeColors} from "@/theme";
 import Categories from "@/components/categories";
 import {FeaturedRow} from "@/components/featuredRow";
 import {getFeaturedRestaurants} from "@/api";
+import {Restaurant} from "@/interfaces/restaurant";
 
 export default function HomeScreen() {
     const [featuredRestaurants, setFeaturedRestaurants] = useState([]);
@@ -43,7 +44,7 @@ export default function HomeScreen() {
             {/*FEATURED*/}
             <View className="mt-5">
                 {
-                    featuredRestaurants.map((item: { name: string, restaurants: any, description: string }, index: number) => {
+                    featuredRestaurants.map((item: { name: string, restaurants: Restaurant[], description: string }, index: number) => {
                     return(
                         <FeaturedRow
                         key={index}

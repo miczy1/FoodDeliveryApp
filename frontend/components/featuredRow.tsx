@@ -2,21 +2,12 @@ import {View, Text, TouchableOpacity, ScrollView} from "react-native";
 import React from 'react'
 import {themeColors} from "@/theme";
 import {RestaurantCard} from "@/components/restaurantCard";
+import {FeaturedRows} from "@/interfaces/featuredRows";
+import {Restaurant} from "@/interfaces/restaurant";
 
-interface FeaturedRowProps {
-    title: string;
-    description: string;
-    restaurants: {
-        image: any;
-        name: string;
-        stars: number;
-        reviews: number;
-        category: string;
-        address: string;
-    }[];
-}
 
-export const FeaturedRow: React.FC<FeaturedRowProps> = ({title, description, restaurants}) => {
+
+export const FeaturedRow: React.FC<FeaturedRows> = ({title, description, restaurants}: FeaturedRows) => {
     return (
         <View>
             <View className="flex-row justify-between items-center px-4">
@@ -30,7 +21,7 @@ export const FeaturedRow: React.FC<FeaturedRowProps> = ({title, description, res
             </View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{paddingHorizontal: 15}} className="overflow-visible py-5">
                 {
-                    restaurants.map((restaurant, index) => {
+                    restaurants.map((restaurant: Restaurant, index: number) => {
                         return (
                             <RestaurantCard
                                 restaurant={restaurant}

@@ -4,12 +4,13 @@ import {themeColors} from "@/theme";
 import {useNavigation} from "@react-navigation/native";
 import {useSelector} from "react-redux";
 import {selectCartItems, selectCartTotal} from "@/slices/cartSlice";
+import {CartItem} from "@/interfaces/cartItem";
 
 
 export default function CartIcon() {
     const navigation = useNavigation();
-    const cartItems = useSelector(selectCartItems)
-    const cartTotal = useSelector(selectCartTotal);
+    const cartItems: CartItem[] = useSelector(selectCartItems)
+    const cartTotal: number = useSelector(selectCartTotal);
     if (!cartItems.length) return;
     return (
         <View className="absolute bottom-5 w-full z-50">
