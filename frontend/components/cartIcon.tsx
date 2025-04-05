@@ -13,7 +13,7 @@ export default function CartIcon() {
     const cartTotal: number = useSelector(selectCartTotal);
     if (!cartItems.length) return;
     return (
-        <View className="absolute bottom-5 w-full z-50">
+        <View className="absolute bottom-12 w-full z-50">
             <TouchableOpacity
                 // @ts-ignore
                 onPress={() => navigation.navigate('Cart')}
@@ -28,7 +28,7 @@ export default function CartIcon() {
                     View cart
                 </Text>
                 <Text className="font-extrabold text-white text-lg">
-                    ${cartTotal}
+                    ${cartTotal.toFixed(2)}
                 </Text>
             </TouchableOpacity>
         </View>

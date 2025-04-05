@@ -26,7 +26,7 @@ export default function RestaurantScreen() {
 
     return (
         <View>
-            <CartIcon/>
+            <CartIcon />
             <StatusBar style="light"/>
             <ScrollView>
                 <View className="relative">
