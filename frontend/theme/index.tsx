@@ -25,5 +25,5 @@ export const palette = [
     }
 ]
 export const themeColors = {
-    ...palette[1]
+    ...palette[4]
 }
